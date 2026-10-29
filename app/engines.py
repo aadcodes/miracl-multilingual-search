@@ -6,7 +6,12 @@ from huggingface_hub import snapshot_download
 from prep import preprocess_query, make_stemmer
 
 LANGS = ['ar','bn','en','es','fa','fi','fr','hi','id','ja','ko','ru','sw','te','th','zh']
-BASE = os.environ.get("MIRACL_DIR", "/content/drive/MyDrive/miracl")
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE = os.environ.get("MIRACL_DIR", os.path.join(_ROOT, "miracl_data"))
+DATA_REPO = os.environ.get("DATA_REPO", "aadcodes/miracl-search-data")
+if not os.path.exists(f"{BASE}/corpus/hi.parquet"):
+    snapshot_download(repo_id=DATA_REPO, repo_type="dataset", local_dir=BASE,
+                      ignore_patterns=["corpus/results/*_top100.npy"])
 CORPUS = f"{BASE}/corpus"
 RES = f"{CORPUS}/results"
 EMB = f"{CORPUS}/emb"

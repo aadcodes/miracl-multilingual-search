@@ -1,4 +1,4 @@
-import html, json
+import os,html, json
 import numpy as np, pandas as pd, gradio as gr
 import matplotlib
 matplotlib.use("Agg")
@@ -139,4 +139,4 @@ with gr.Blocks(title="MIRACL Multilingual Search") as demo:
 if __name__ == "__main__":
     for l in ("hi", "en"):
         get_engine(l)                      # warm up: builds indexes before the first user query
-    demo.queue().launch(share=True)
+        demo.queue().launch(share=os.environ.get("SHARE", "1") == "1")
