@@ -1,0 +1,12 @@
+gradio
+pandas
+numpy
+scipy
+scikit-learn
+nltk
+regex
+pyarrow
+sentence-transformers
+torch
+huggingface_hub
+matplotlib

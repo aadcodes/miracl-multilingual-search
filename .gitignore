@@ -1,0 +1,7 @@
+miracl_data/
+*.parquet
+*.pkl
+*.npy
+.env
+__pycache__/
+.ipynb_checkpoints/
